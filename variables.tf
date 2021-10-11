@@ -1,8 +1,31 @@
-variable "instance_type" {}
-variable "instance_count" {}
-variable "vol_size" {}
-variable "public_subnets" {}
-variable "pwnbox_sg" {}
-variable "public_key_path" {}
-variable "key_name" {}
-variable "datafile" {}
+ # -- network/ variables -- 
+
+variable "vpc_cidr" {
+  type = string 
+}
+
+variable "public_cidrs" {
+  type = list(any)
+}
+variable "private_cidr" {
+  type = list(any) 
+}
+variable "public_sn_count" {
+  type = number
+}
+variable "max_subnets" {
+  type = number 
+}
+variable "access_ip" {
+  type = string 
+}
+variable "security_groups" {}
+  
+
+
+
+
+
+
+
+
