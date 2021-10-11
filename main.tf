@@ -39,7 +39,7 @@ resource "aws_subnet" "pakrushn_public_subnets" {
 
 resource "aws_route_table_association" "pakrushn_public_assoc" {
   count          = var.public_sn_count 
-  subnet_id      = aws _subnet.pakrushn_public_subnet.*.id[count.index]
+  subnet_id      = aws_subnet.pakrushn_public_subnet.*.id[count.index]
   route_table_id = aws_route_table.pakrushn_public_rt.id
 }
 
@@ -70,10 +70,11 @@ resource "aws_security_group" "pakrushn_sg" {
   name      = each.value.name
   descipton = each.value.descripton
   vpc_id    = aws_vpc_pakrushn_vpc.id
+}  
   
   
   dynamic "ingress" {
-    for each = each.value.ingress
+    for_each = each.value.ingress
       content {
         
         from_part   = ingress.value.from
